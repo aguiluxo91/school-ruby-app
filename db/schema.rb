@@ -20,11 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_125932) do
   create_table "lessons", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.time "hour"
-    t.boolean "monday"
-    t.boolean "tuesday"
-    t.boolean "wednesday"
-    t.boolean "thursday"
-    t.boolean "friday"
+    t.boolean "monday", default: false
+    t.boolean "tuesday", default: false
+    t.boolean "wednesday", default: false
+    t.boolean "thursday", default: false
+    t.boolean "friday", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "group_id"

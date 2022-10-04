@@ -3,11 +3,11 @@ class CreateLessons < ActiveRecord::Migration[7.0]
     create_table :lessons do |t|
       t.string :name
       t.time :hour
-      t.boolean :monday
-      t.boolean :tuesday
-      t.boolean :wednesday
-      t.boolean :thursday
-      t.boolean :friday
+      t.boolean :monday, default: false
+      t.boolean :tuesday, default: false
+      t.boolean :wednesday, default: false
+      t.boolean :thursday, default: false
+      t.boolean :friday, default: false
       t.timestamps
     end
   end
