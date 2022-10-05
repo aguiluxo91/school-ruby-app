@@ -1,0 +1,6 @@
+
+<% @teachers.each do |teacher| %>
+    <div class="row">
+        <%= link_to "#{teacher.full_name}", teacher_path(teacher)%>
+    </div>
+<% end %>

@@ -20,5 +20,7 @@ class Lesson < ApplicationRecord
     def check_day(day)
         send("#{day}")
     end
+
+    
     
 end
