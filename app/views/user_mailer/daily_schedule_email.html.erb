@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Good Morning <%= @user.first_name %></h1>
+    <p>Below you can find your Lessons Schedule for today</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Hour</th>
+                <th scope="col">Lesson</th>
+                <th scope="col">Group</th>
+                <th scope="col">Days</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @user.check_today_schedule.each do |lesson| %>
+                <tr>
+                    <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
+                    <td><%= lesson.subject.name %></td>
+                    <td><%= lesson.group.group_number %></td>
+                    <td><%= lesson.check_lesson_days %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <p>Today is gonna be a great day!</p>
+  </body>
+</html>

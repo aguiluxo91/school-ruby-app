@@ -64,4 +64,21 @@ RailsAdmin.config do |config|
     exclude_fields :lessons, :students
   end
 
+  config.model Lesson do
+    list do
+      field :id
+      field :subject
+      field :hour
+      field :teacher
+      field :group
+      field :monday
+      field :tuesday
+      field :wednesday
+      field :thursday
+      field :friday
+      field :created_at
+      field :updated_at
+    end
+  end
+
 end

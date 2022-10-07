@@ -1,0 +1,156 @@
+<h5 class="my-3">These are your Lessons for today!<span class="text-muted fs-6 fst-italic"> <%= Date.today %></span></h5>
+<div class="col-md-6 p-3">
+    <h6 class="my-4 fst-italic">Student: <%= @student.full_name %></h6>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Hour</th>
+                <th scope="col">Lesson</th>
+                <th scope="col">Group</th>
+                <th scope="col">Days</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @student.check_today_schedule.each do |lesson| %>
+                <tr>
+                    <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
+                    <td><%= lesson.subject.name %></td>
+                    <td><%= lesson.group.group_number %></td>
+                    <td><%= lesson.check_lesson_days %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+<div class="row border p-3 shadow-md rounded">
+    <% if @student.week_schedule("monday").size > 0 %>
+        <div class="col-md-4">
+                <table class="table table-bordered">
+                <h5 class="text-decoration-underline">Monday</h5>
+                    <thead>
+                        <tr>
+                            <th scope="col">Hour</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Group</th>
+                            <th scope="col">Teacher</th>
+                        </tr>
+                    </thead>
+                    <% @student.week_schedule("monday").each do |lesson| %>
+                        <tbody>
+                            <tr>
+                                <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
+                                <td><%= lesson.subject.name %></td>
+                                <td><%= lesson.group.group_number %></td>
+                                <td><%= lesson.teacher.first_name %></td>
+                            </tr>
+                        </tbody>
+                    <% end %>
+            </table>
+        </div>
+    <% end %>
+    <% if @student.week_schedule("tuesday").size > 0 %>
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <h5 class="text-decoration-underline">Tuesday</h5>
+                <thead>
+                    <tr>
+                        <th scope="col">Hour</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Teacher</th>
+                    </tr>
+                </thead>
+                <% @student.week_schedule("tuesday").each do |lesson| %>
+                    <tbody>
+                        <tr>
+                            <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
+                            <td><%= lesson.subject.name %></td>
+                            <td><%= lesson.group.group_number %></td>
+                            <td><%= lesson.teacher.first_name %></td>
+                        </tr>
+                    </tbody>
+                        
+                <% end %>
+            </table>
+        </div>
+    <% end %>
+    <% if @student.week_schedule("wednesday").size > 0 %>
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <h5 class="text-decoration-underline">Wednesday</h5>
+                <thead>
+                    <tr>
+                        <th scope="col">Hour</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Teacher</th>
+                    </tr>
+                </thead>
+                <% @student.week_schedule("wednesday").each do |lesson| %>
+                    <tbody>
+                        <tr>
+                            <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
+                            <td><%= lesson.subject.name %></td>
+                            <td><%= lesson.group.group_number %></td>
+                            <td><%= lesson.teacher.first_name %></td>
+                        </tr>
+                    </tbody>
+                        
+                <% end %>
+            </table>
+        </div>
+    <% end %>
+    <% if @student.week_schedule("thursday").size > 0 %>
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <h5 class="text-decoration-underline">Thursday</h5>
+                <thead>
+                    <tr>
+                        <th scope="col">Hour</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Teacher</th>
+                    </tr>
+                </thead>
+                <% @student.week_schedule("thursday").each do |lesson| %>
+                    <tbody>
+                        <tr>
+                            <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
+                            <td><%= lesson.subject.name %></td>
+                            <td><%= lesson.group.group_number %></td>
+                            <td><%= lesson.teacher.first_name %></td>
+                        </tr>
+                    </tbody>
+                        
+                <% end %>
+            </table>
+        </div>
+    <% end %>
+    <% if @student.week_schedule("friday").size > 0 %>
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <h5 class="text-decoration-underline">Friday</h5>
+                <thead>
+                    <tr>
+                        <th scope="col">Hour</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Teacher</th>
+                    </tr>
+                </thead>
+                <% @student.week_schedule("friday").each do |lesson| %>
+                    <tbody>
+                        <tr>
+                            <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
+                            <td><%= lesson.subject.name %></td>
+                            <td><%= lesson.group.group_number %></td>
+                            <td><%= lesson.teacher.first_name %></td>
+                        </tr>
+                    </tbody>
+                        
+                <% end %>
+            </table>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-xs-10">
+        <% flash.each do |name, msg| %>
+            <div class="alert alert-<%= "#{name}"%>">
+                <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+                <a href="#" class="close" data-dismiss="alert">&#215;</a>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -18,7 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_125932) do
   end
 
   create_table "lessons", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
     t.time "hour"
     t.boolean "monday", default: false
     t.boolean "tuesday", default: false

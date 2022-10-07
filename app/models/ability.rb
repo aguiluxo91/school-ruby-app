@@ -5,9 +5,35 @@ class Ability
 
   def initialize(user)
     # Define abilities for the user here. For example:
-
     user ||= User.new
-    can :manage, :all if user.is_a?(Admin)
+
+
+    if user.is_a?(Admin)
+      admin_abilities
+    elsif user.is_a?(Teacher)
+      teacher_abilities(user)
+    elsif user.is_a?(Student)
+      student_abilities(user)
+    end
+
+  end
+
+  def admin_abilities
+    can :manage, :all
+  end
+
+
+  def teacher_abilities(user)
+    can :index, Teacher
+    can :show, Teacher, id: user.id
+    can :show, LessonPlan
+  end
+
+  def student_abilities(user)
+    can :index, Student
+    can :show, Student, id: user.id
+  end
+
 
     #
     # The first argument to `can` is the action you are giving the user
@@ -27,5 +53,4 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
-  end
 end

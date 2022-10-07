@@ -2,18 +2,20 @@ class Teacher < User
     validates :first_name, presence: true
     validates :last_name, presence: true
     has_many :lessons
+    after_save :send_welcome_email
 
-    def check_schedule(teacher)
-        if Date.today.wday == 1
-            Lesson.where(monday: true, teacher_id: teacher).order(:hour)
-        elsif Date.today.wday == 2
-            Lesson.where(tuesday: true, teacher_id: teacher.id).order(:hour)
-        elsif Date.today.wday == 3
-            Lesson.where("wednesday = true and teacher_id = teacher_id").order(:hour)
-        elsif Date.today.wday == 4
-            Lesson.where("thursday = true and teacher_id = teacher_id").order(:hour)
-        else Date.today.wday == 5
-            Lesson.where("friday = true and teacher_id = teacher_id").order(:hour)
-        end
+
+    def week_schedule(day)
+        lessons.where("#{day}": true).order(:hour)
     end
+
+    def send_daily_schedule_email
+        UserMailer.with(user: self).daily_schedule_email.deliver_now
+    end
+
+    private
+    def send_welcome_email
+        UserMailer.with(user: self).welcome_email.deliver_now
+    end
+   
 end

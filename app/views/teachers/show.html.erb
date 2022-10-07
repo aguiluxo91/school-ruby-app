@@ -1,19 +1,15 @@
-<h5>These are your Lessons for today!<span class="text-muted fs-6 fst-italic"> <%= Date.today %></span></h5>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Lesson</th>
-            <th scope="col">Group</th>
-            <th scope="col">Time</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @teacher.check_schedule(@teacher).each do |lesson| %>
-            <tr>
-                <td><%= lesson.name %></td>
-                <td><%= lesson.group.group_number %></td>
-                <td>at <%= lesson.hour.hour %> o'clock</td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<h1>Teacher Profile</h1>
+<%= link_to "Your Schedule", lesson_plan_path %>
+
+
+
+
+
+
+
+
+
+
+       
+
+    
