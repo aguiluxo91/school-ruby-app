@@ -1,5 +1,7 @@
 class LessonsController < ApplicationController
-    before_action :set_lesson, only: [:show]
+    load_and_authorize_resource
+
+    before_action :set_lesson, only: [:show, :edit, :update]
 
     def new
         @lesson = Lesson.new
@@ -8,12 +10,25 @@ class LessonsController < ApplicationController
     def show
     end
 
+    def edit
+
+    end
+
+    def update
+        if @lesson.update(lesson_params)
+            teacher = Teacher.find(params[:lesson][:teacher_id])
+            flash[:success] = "Lesson was successfully created"
+            redirect_to teachers_path(teacher)
+        else
+            render 'edit', status: :unprocessable_entity
+        end
+    end
+
     def create
-        debugger
         @lesson = Lesson.new(lesson_params)
         if @lesson.save
+            teacher = Teacher.find(params[:lesson][:teacher_id])
             flash[:success] = "Lesson was successfully created"
-            teacher = Teacher.find_by_id(params[:lesson][:teacher_id])
             redirect_to teacher_path(teacher)
         else
             render 'new', status: :unprocessable_entity

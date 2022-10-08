@@ -27,6 +27,7 @@ class Ability
     can :index, Teacher
     can :show, Teacher, id: user.id
     can :show, LessonPlan
+    can :manage, Lesson, teacher_id: user.id
   end
 
   def student_abilities(user)

@@ -4,7 +4,7 @@ class Lesson < ApplicationRecord
     belongs_to :teacher
     belongs_to :subject
     LESSON_TIME = 1
-    validate :check_lesson_day_overlap, :check_valid_hour, :check_at_least_one_day
+    validate :check_teacher_day_overlap, :check_group_day_overlap, :check_valid_hour, :check_at_least_one_day
 
 
     def end_hour
@@ -35,13 +35,22 @@ class Lesson < ApplicationRecord
         errors.add(:hour, "must be between 8 and 14") if hour && (hour.hour < 8 || hour.hour > 14)
     end
 
-    def check_lesson_day_overlap
+    def check_teacher_day_overlap
         days = day_selected
         teacher && days.each do |day|
             unless teacher.lessons.find_by(hour: self.hour, "#{day}": true).blank?
                 errors.add(:hour, "Overlaped with #{teacher.lessons.find_by(hour: self.hour, "#{day}": true)} on #{day.capitalize}")
             end
         end    
+    end
+
+    def check_group_day_overlap
+        days = day_selected
+        group && days.each do |day|
+            unless group.lessons.find_by(hour: self.hour, "#{day}": true).blank?
+                errors.add(:hour, "Overlaped with #{group.lessons.find_by(hour: self.hour, "#{day}": true)} on #{day.capitalize}")
+            end
+        end  
     end
 
     def day_selected

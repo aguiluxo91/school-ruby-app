@@ -3,11 +3,11 @@
 class LessonPlan
     def initialize(day, teacher)
         @teacher = teacher
-        @day = day.downcase
+        @day = day.downcase if day
     end
 
-    def schedule_today
-        @teacher.lessons.where("#{@day}": true).order(:hour)
+    def schedule
+        @teacher.lessons.where("#{@day}": true).order(:hour) if @day
     end
 
 end

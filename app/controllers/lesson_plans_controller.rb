@@ -12,13 +12,13 @@ class LessonPlansController < ApplicationController
 
     ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].each do |day|
         define_method("plan_#{day}") do
-            LessonPlan.new(day, teacher).schedule_today
+            LessonPlan.new(day, teacher).schedule
         end
     end
 
     def plan_today
-        day = DateTime.now.strftime("%A").downcase
-        LessonPlan.new(day, teacher).schedule_today
+        day = DateTime.now.strftime("%A").downcase unless "saturday" || "sunday"
+        LessonPlan.new(day, teacher).schedule
     end
 
     

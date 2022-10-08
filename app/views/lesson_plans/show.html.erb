@@ -1,6 +1,6 @@
 <div class="col-md-6 my-4">
     <h6 class="my-4 fst-italic">Teacher: <%= @teacher.full_name %></h6>
-    <% if @lessons_plan.size > 0 %>
+    <% if @lessons_plan && @lessons_plan.size > 0 %>
         <h5>These are your Lessons for today!<span class="text-muted fs-6 fst-italic"> <%= Date.today %></span></h5>
         <table class="table table-bordered">
             <thead>
