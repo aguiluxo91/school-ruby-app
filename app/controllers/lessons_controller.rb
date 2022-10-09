@@ -3,6 +3,10 @@ class LessonsController < ApplicationController
 
     before_action :set_lesson, only: [:show, :edit, :update]
 
+    def index
+        @lessons = Lesson.where(teacher: current_user)
+    end
+
     def new
         @lesson = Lesson.new
     end
@@ -33,6 +37,12 @@ class LessonsController < ApplicationController
         else
             render 'new', status: :unprocessable_entity
         end
+    end
+
+    def destroy
+        @lesson.destroy
+        flash[:danger] = "Lesson was successfully deleted"
+        redirect_to lessons_path status: :unprocessable_entity
     end
 
 

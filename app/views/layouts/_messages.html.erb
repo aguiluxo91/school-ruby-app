@@ -1,9 +1,9 @@
-<div class="row">
-    <div class="col-xs-10">
+<div class="row d-flex justify-content-center my-3">
+    <div class="col-md-6">
         <% flash.each do |name, msg| %>
-            <div class="alert alert-<%= "#{name}"%>">
+            <div class="alert alert-<%= "#{name}"%> d-flex justify-content-between">
                 <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-                <a href="#" class="close" data-dismiss="alert">&#215;</a>
+                <a href="#" class="btn-close" data-dismiss="alert"></a>
             </div>
         <% end %>
     </div>

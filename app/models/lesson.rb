@@ -4,7 +4,7 @@ class Lesson < ApplicationRecord
     belongs_to :teacher
     belongs_to :subject
     LESSON_TIME = 1
-    validate :check_teacher_day_overlap, :check_group_day_overlap, :check_valid_hour, :check_at_least_one_day
+    validate :check_teacher_day_overlap, :check_group_day_overlap, :check_valid_hour, :check_at_least_one_day, :check_only_one_day
 
 
     def end_hour
@@ -27,8 +27,13 @@ class Lesson < ApplicationRecord
     end
 
     private
+
     def check_at_least_one_day
-        errors.add(:monday, "At least one day must be checked") if ([monday, tuesday, wednesday, thursday, friday].all? { |day| !day })
+        errors.add(:monday, "One day must be checked") if ([monday, tuesday, wednesday, thursday, friday].all? { |day| !day })
+    end
+
+    def check_only_one_day
+        errors.add(:monday, "You must check only one day") if ([monday, tuesday, wednesday, thursday, friday].select { |day| day == true}).count > 1
     end
 
     def check_valid_hour

@@ -1,0 +1,7 @@
+<% @lessons.each do |lesson| %>
+<ul>
+    <li>
+        <%= link_to "#{lesson.subject.name}", lesson_path(lesson) %> <%= lesson.check_lesson_days %>
+    </li>
+</ul>
+<% end %>

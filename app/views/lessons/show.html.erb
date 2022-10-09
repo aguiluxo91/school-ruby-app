@@ -1,0 +1,16 @@
+<div class="text-center d-flex justify-content-center align-items-center my-3">
+    <div class="card p-2">
+    <div class="card-body">
+        <h5 class="card-title"><%= @lesson.subject.name %></h5>
+        <h5 class="card-title"><%= @lesson.teacher.full_name %></h5>
+
+        <h6 class="card-subtitle mb-2 text-muted"><%= @lesson.hour.hour %>:00 - <%= @lesson.end_hour %>:00</h6>
+        <h6 class="card-subtitle mb-2">Students:</h6>
+        <% @lesson.group.students.each do |student| %>
+            <p class="card-text"><%= student.full_name %></p>
+        <% end %>
+        <%= link_to "Edit", edit_lesson_path(@lesson), class:"card-link" %>
+        <%= link_to "Delete", lesson_path(@lesson), data: { "turbo-method" => :delete, "turbo-confirm" => "Are you sure you want to delete the Lesson?"}, class:"card-link" %>
+    </div>
+    </div>
+</div>
