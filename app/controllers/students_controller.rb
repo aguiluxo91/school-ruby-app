@@ -7,5 +7,6 @@ class StudentsController < ApplicationController
 
     def show
         @student = Student.find(params[:id])
+        @students_group = Student.where(group: @student.group)
     end
 end

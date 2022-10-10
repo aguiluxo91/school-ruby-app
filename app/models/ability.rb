@@ -24,15 +24,17 @@ class Ability
 
 
   def teacher_abilities(user)
-    can :index, Teacher
-    can :show, Teacher, id: user.id
+    can [:index, :show], Teacher
+    can [:edit, :update], Teacher, id: user.id
     can :show, LessonPlan
     can :manage, Lesson, teacher_id: user.id
+    can [:index, :show], Student
   end
 
   def student_abilities(user)
     can :index, Student
     can :show, Student, id: user.id
+    can [:index, :show], Teacher
   end
 
 

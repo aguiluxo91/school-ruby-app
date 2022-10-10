@@ -1,6 +1,11 @@
-<h5 class="my-3">These are your Lessons for today!<span class="text-muted fs-6 fst-italic"> <%= Date.today %></span></h5>
+<% if @student.check_today_schedule.blank? %>
+    <h5 class="text-primary fw-bold fs-4">You have day off!</h5>
+<% else %>
+    <h5 class="my-3">These are your Lessons for today!<span class="text-muted fs-6 fst-italic"> <%= Date.today %></span></h5>
+<% end %>
 <div class="col-md-6 p-3">
     <h6 class="my-4 fst-italic">Student: <%= @student.full_name %></h6>
+    <% if @student.check_today_schedule.count > 0 %>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -21,10 +26,11 @@
             <% end %>
         </tbody>
     </table>
+    <% end %>
 </div>
 
 <div class="row border p-3 shadow-md rounded">
-    <% if @student.week_schedule("monday").size > 0 %>
+    <% if @student.week_schedule("monday").count > 0 %>
         <div class="col-md-4">
                 <table class="table table-bordered">
                 <h5 class="text-decoration-underline">Monday</h5>
@@ -49,7 +55,7 @@
             </table>
         </div>
     <% end %>
-    <% if @student.week_schedule("tuesday").size > 0 %>
+    <% if @student.week_schedule("tuesday").count > 0 %>
         <div class="col-md-4">
             <table class="table table-bordered">
                 <h5 class="text-decoration-underline">Tuesday</h5>
@@ -75,7 +81,7 @@
             </table>
         </div>
     <% end %>
-    <% if @student.week_schedule("wednesday").size > 0 %>
+    <% if @student.week_schedule("wednesday").count > 0 %>
         <div class="col-md-4">
             <table class="table table-bordered">
                 <h5 class="text-decoration-underline">Wednesday</h5>
@@ -101,7 +107,7 @@
             </table>
         </div>
     <% end %>
-    <% if @student.week_schedule("thursday").size > 0 %>
+    <% if @student.week_schedule("thursday").count > 0 %>
         <div class="col-md-4">
             <table class="table table-bordered">
                 <h5 class="text-decoration-underline">Thursday</h5>
@@ -127,7 +133,7 @@
             </table>
         </div>
     <% end %>
-    <% if @student.week_schedule("friday").size > 0 %>
+    <% if @student.week_schedule("friday").count > 0 %>
         <div class="col-md-4">
             <table class="table table-bordered">
                 <h5 class="text-decoration-underline">Friday</h5>
@@ -153,4 +159,14 @@
             </table>
         </div>
     <% end %>
+</div>
+
+<div class="my-3 border rounded p-3 w-25">
+    <h6 class="text-decoration-underline">Group <%= @student&.group.group_number %></h6>
+    <ul>
+        <% @students_group&.each do |student| %>
+            <li class="fst-italic"><%= student.full_name %></li>
+        <% end %>
+    </ul>
+    
 </div>

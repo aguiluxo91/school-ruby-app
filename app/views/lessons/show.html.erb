@@ -1,16 +1,26 @@
-<div class="text-center d-flex justify-content-center align-items-center my-3">
+<div class="text-center w-50 my-3 mx-auto">
     <div class="card p-2">
     <div class="card-body">
-        <h5 class="card-title"><%= @lesson.subject.name %></h5>
-        <h5 class="card-title"><%= @lesson.teacher.full_name %></h5>
+        <h4 class="card-title text-decoration-underline text-primary"><%= @lesson.subject.name %></h4>
+        <h5 class="card-title my-3"><%= @lesson.teacher.full_name %></h5>
 
-        <h6 class="card-subtitle mb-2 text-muted"><%= @lesson.hour.hour %>:00 - <%= @lesson.end_hour %>:00</h6>
+        <h6 class="card-subtitle mb-2 text-muted my-2"><%= @lesson.hour.hour %>:00 - <%= @lesson.end_hour %>:00</h6>
+        <h6 class="my-3"><%= @lesson.check_lesson_days %></h6>
+        <% if @lesson&.group.students.blank? %>
+            <h6 class="card-subtitle mb-2">No Students</h6>
+        <% else %>
         <h6 class="card-subtitle mb-2">Students:</h6>
-        <% @lesson.group.students.each do |student| %>
-            <p class="card-text"><%= student.full_name %></p>
+        <ul class="list-group list-group-flush my-2 w-50 mx-auto">
+            <% @lesson.group.students.each do |student| %>
+                <li class="list-group-item"><%= student.full_name %></li>
+            <% end %>
+        </ul>
         <% end %>
-        <%= link_to "Edit", edit_lesson_path(@lesson), class:"card-link" %>
-        <%= link_to "Delete", lesson_path(@lesson), data: { "turbo-method" => :delete, "turbo-confirm" => "Are you sure you want to delete the Lesson?"}, class:"card-link" %>
+        <%= link_to "Edit", edit_lesson_path(@lesson), class:"card-link btn btn-warning" %>
+        <%= link_to "Delete", lesson_path(@lesson), data: { "turbo-method" => :delete, "turbo-confirm" => "Are you sure you want to delete the Lesson?"}, class:"card-link btn btn-danger" %>
     </div>
     </div>
+</div>
+<div class="w-50 mx-auto">
+    <%= link_to "Back", lessons_path, class: "btn btn-primary" %>
 </div>

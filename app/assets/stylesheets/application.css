@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+#welcome {
+    background-image: url(/welcome_school.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 800px;
+}
+

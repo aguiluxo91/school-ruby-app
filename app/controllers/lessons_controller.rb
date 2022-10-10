@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
     before_action :set_lesson, only: [:show, :edit, :update]
 
     def index
-        @lessons = Lesson.where(teacher: current_user)
+        @lessons = Lesson.where(teacher: current_user).order(:group_id)
     end
 
     def new

@@ -22,6 +22,10 @@ class Lesson < ApplicationRecord
         send("#{day}")
     end
 
+    def find_students_in_lesson
+        Student.where(group: group)
+    end
+
     def to_s
         "#{self.subject.name} at #{self.hour.hour}:00 for Group #{self.group.group_number}"
     end

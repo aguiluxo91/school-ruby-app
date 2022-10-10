@@ -1,7 +1,13 @@
 <% @lessons.each do |lesson| %>
-<ul>
-    <li>
-        <%= link_to "#{lesson.subject.name}", lesson_path(lesson) %> <%= lesson.check_lesson_days %>
-    </li>
-</ul>
+    <div class="card w-50 mx-auto my-3 text-center">
+        <div class="card-body">
+            <h5 class="card-title"><%= lesson.subject.name %></h5>
+            <p class="card-text"><%= lesson.check_lesson_days %></p>
+            <%= link_to "Go to the lesson", lesson_path(lesson), class:"btn btn-primary" %>
+        </div>
+    </div>
 <% end %>
+<div class="w-50 my-3 mx-auto">
+    <%= link_to "Back", teacher_path(@lessons[0].teacher), class: "btn btn-primary" %>
+</div>
+

@@ -1,6 +1,5 @@
 class LessonPlansController < ApplicationController
     authorize_resource through: :user
-
     def show
         @lessons_plan = plan_today
         @lessons_monday = plan_monday
@@ -17,7 +16,12 @@ class LessonPlansController < ApplicationController
     end
 
     def plan_today
-        day = DateTime.now.strftime("%A").downcase unless "saturday" || "sunday"
+        day = DateTime.now.strftime("%A").downcase
+        if day == ("saturday" || "sunday")
+            day = nil
+        else
+            day = DateTime.now.strftime("%A").downcase
+        end
         LessonPlan.new(day, teacher).schedule
     end
 

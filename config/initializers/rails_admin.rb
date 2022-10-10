@@ -53,6 +53,17 @@ RailsAdmin.config do |config|
     edit do
       exclude_fields :lessons, :date_of_birth, :group_id, :reset_password_sent_at, :remember_created_at
     end
+    list do
+      field :id
+      field :first_name
+      field :last_name
+      field :email
+      field :lessons
+      field :type
+      field :created_at
+      field :updated_at
+      field :reset_password_sent_at
+    end
   end
   config.model Admin do
     object_label_method :full_name

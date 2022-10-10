@@ -18,7 +18,13 @@
                         <th><%= lesson.hour.hour %>:00 - <%= lesson.end_hour %>:00</th>
                         <td><%= lesson.subject.name %></td>
                         <td><%= lesson.group.group_number %></td>
-                        <td><%= link_to "Students", "#" %></td>
+                        <td>
+                            <% lesson.find_students_in_lesson.each do |student| %>
+                                <li>
+                                    <%= student.first_name %>
+                                </li>
+                            <% end %>
+                        </td>
                         <td><%= lesson.check_lesson_days %></td>
                     </tr>
                 <% end %>
@@ -145,3 +151,4 @@
         </div>
     <% end %>
 </div>
+    <%= link_to "Back", teacher_path(Teacher.find(params[:id])), class:"btn btn-primary my-3" %>

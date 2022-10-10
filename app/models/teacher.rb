@@ -1,8 +1,9 @@
 class Teacher < User
     validates :first_name, presence: true
     validates :last_name, presence: true
+    validates :email, presence: true
     has_many :lessons
-    after_save :send_welcome_email
+    after_create :send_welcome_email
 
 
     def week_schedule(day)

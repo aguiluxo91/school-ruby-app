@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   devise_for :users
 
-  resources :teachers, only: [:index, :show]
+  resources :teachers, only: [:index, :show, :edit, :update]
   resources :students, only: [:index, :show]
   resources :lesson_plans, only: [:show]
   resources :lessons

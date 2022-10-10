@@ -1,6 +1,22 @@
+
+
+
+<div class="w-100 d-flex flex-column align-items-center">
 <h1>Teacher Profile</h1>
-<%= link_to "Your Schedule", lesson_plan_path %>
-<%= link_to "Lessons", lessons_path %>
+    <div class="my-3 border rounded shadow-md w-50 p-3 text-center">
+        <%= gravatar_for @teacher, size: 80 %>
+        <h5 class="my-3"><%= @teacher.full_name %></h5>
+        <h6 class="text-muted"><%= @teacher.email %></h6>
+    </div>
+
+    <% if @teacher.lessons && @teacher == current_user %>
+        <div class="w-50 text-center">   
+            <%= link_to "Schedule", lesson_plan_path, class: "btn btn-primary me-2" %>
+            <%= link_to "Lessons", lessons_path, class: "btn btn-success" %>
+        </div>
+    <% end %>
+</div>
+
 
 
 

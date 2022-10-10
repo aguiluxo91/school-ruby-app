@@ -4,7 +4,7 @@
     <%= form_for(@lesson, :html => { role: "form" }) do |f| %>
         <div class="mb-3">
             <%= f.label :teacher, class:"form-label" %>
-            <%= f.collection_select(:teacher_id, Teacher.order(:id), :id, :full_name, {:include_blank => 'Select the Teacher'}, {:class => "form-select"}) %>
+            <%= f.collection_select(:teacher_id, Teacher.where(id: current_user), :id, :full_name, {}, {:class => "form-select"}) %>
         </div>
 
         <div class="mb-3">
