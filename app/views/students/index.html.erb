@@ -1,9 +1,31 @@
-<% @students.each do |student| %>
+<% if current_user.is_a?(Teacher) %>
+    <h3 class="text-center">Your Students</h3>
+<% elsif current_user.is_a?(Student) %>
+    <h3 class="text-center">Your Classmates</h3>
+<% else %>
+    <h3 class="text-center">Students</h3>
+<% end %>
+
+
+
+<% if @students %>
+    <div div class="d-flex justify-content-center my-3">
+        <%= will_paginate @students %>
+    </div>
+    
+    <% @students.each do |student| %>
     <div class="my-3 border rounded shadow-md w-50 p-3 text-center mx-auto">
         <%= gravatar_for student, size: 80 %>
         <h5 class="my-3"><%= student.full_name %></h5>
         <h6 class="text-muted"><%= student.email %></h6>
         <h6>Class <%= student.group.group_number %></h6>
     </div>
+    <% end %>
+    <div class="d-flex justify-content-center my-3">
+        <%= will_paginate @students %>
+    </div>
+<% else %>
+    <h6>You still have any Students</h6>
 <% end %>
+
 

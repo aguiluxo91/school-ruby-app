@@ -14,6 +14,19 @@ class Teacher < User
         UserMailer.with(user: self).daily_schedule_email.deliver_now
     end
 
+    def students
+        students = []
+        lessons.each do |lesson|
+            students << lesson.students
+        end
+        students.flatten.uniq
+    end
+
+    def show_lessons
+        result = lessons.map { |lesson| lesson.subject.name if lesson.subject }
+        result.uniq
+    end
+
     private
     def send_welcome_email
         UserMailer.with(user: self).welcome_email.deliver_now

@@ -1,7 +1,11 @@
+<h3 class="text-center">Teachers</h3>
+
 <% @teachers.each do |teacher| %>
     <div class="my-3 border rounded shadow-md w-50 p-3 text-center mx-auto">
         <%= gravatar_for teacher, size: 80 %>
         <h5 class="my-3"><%= teacher.full_name %></h5>
         <h6 class="text-muted"><%= teacher.email %></h6>
+        <h6><%= teacher.show_lessons.to_sentence %></h6> 
+               
     </div>
 <% end %>

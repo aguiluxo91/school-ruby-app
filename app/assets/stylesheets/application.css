@@ -22,3 +22,40 @@
     height: 800px;
 }
 
+
+.previous_page {
+    background-color: blue;
+    color: white;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.previous_page:hover {
+    color: cornsilk;
+}
+
+.next_page {
+    background-color: blue;
+    color: white;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.next_page:hover {
+    color: cornsilk;
+}
+
+.pagination span {
+    border: 1px solid black;
+    padding: 3px;
+}
+
+.pagination a {
+    border: 1px solid blue;
+    padding: 3px;
+    text-decoration: none;
+}
+
+.pagination em {
+    border: 1px solid blue;
+    text-decoration: none;
+    padding: 3px;
+}

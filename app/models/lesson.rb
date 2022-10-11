@@ -3,6 +3,7 @@ class Lesson < ApplicationRecord
     belongs_to :group
     belongs_to :teacher
     belongs_to :subject
+    delegate :students, to: :group
     LESSON_TIME = 1
     validate :check_teacher_day_overlap, :check_group_day_overlap, :check_valid_hour, :check_at_least_one_day, :check_only_one_day
 
